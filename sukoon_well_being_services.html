@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas of Calm | Art Therapy</title>
+    <style>
+        :root {
+            --soft-blue: #e3f2fd;
+            --deep-teal: #006064;
+            --warm-gray: #f5f5f5;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--warm-gray);
+        }
+
+        header {
+            background-color: white;
+            padding: 2rem 10%;
+            text-align: center;
+            border-bottom: 2px solid var(--soft-blue);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--deep-teal);
+            font-weight: bold;
+        }
+
+        .hero {
+            padding: 80px 10%;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffffff, var(--soft-blue));
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        .features {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--deep-teal);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background: var(--deep-teal);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Canvas of Calm</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#techniques">Techniques</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Healing Through Expression</h2>
+        <p>Discover how the process of creating art can help you manage stress, navigate emotions, and find peace.</p>
+        <a href="#about" class="btn">Begin Your Journey</a>
+    </section>
+
+    <div class="container" id="techniques">
+        <h2 style="text-align: center;">Mindful Techniques</h2>
+        <div class="features">
+            <div class="card">
+                <h3>Mindful Doodling</h3>
+                <p>Focus on the rhythm of the pen to ground yourself in the present moment.</p>
+            </div>
+            <div class="card">
+                <h3>Color Psychology</h3>
+                <p>Explore how different hues impact your mood and emotional release.</p>
+            </div>
+            <div class="card">
+                <h3>clay Sculpting</h3>
+                <p>Use tactile sensations to work through tension and physical stress.</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" style="background: white; padding: 60px 10%;">
+        <h2>What is Art Therapy?</h2>
+        <p>Art therapy is a therapeutic technique rooted in the idea that creative expression can foster healing and mental well-being. It is not about being a "good artist"—it is about the process of making and what it reveals to you.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Canvas of Calm | Art for the Soul</p>
+    </footer>
+
+</body>
+</html>

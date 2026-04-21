@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sukoon | Social Enterprise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --green:#2e7d32;
+      --green-dark:#1b5e20;
+      --green-soft:#e8f5e9;
+      --text:#21402a;
+      --muted:#5d7561;
+      --shadow:0 18px 40px rgba(19, 62, 26, .12);
+      --shadow-strong:0 22px 50px rgba(19, 62, 26, .18);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box;}
+
+    html{scroll-behavior:smooth;}
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#fff 0%,#f3fbf4 100%);
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;}
+    img{max-width:100%; display:block;}
+
+    .navbar{
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(46,125,50,.12);
+      transition:.3s ease;
+    }
+
+    .brand-text{
+      color:var(--green);
+      font-weight:800;
+      font-size:1.25rem;
+      letter-spacing:.2px;
+    }
+
+    .nav-link{
+      font-weight:700;
+      color:var(--muted) !important;
+      border-radius:999px;
+      padding:8px 12px !important;
+      transition:.25s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus{
+      background:var(--green-soft);
+      color:var(--green-dark) !important;
+      transform:translateY(-1px);
+    }
+
+    .hero-banner {
+      position: relative;
+      min-height: 100vh;
+      background: url("https://img.freepik.com/premium-photo/meditation-scene-with-serene-ambiance-calming-background-suitable-wallpaper-with-ample-cop_1288054-14972.jpg?uid=R160801422&ga=GA1.1.610131782.1768930266&semt=ais_hybrid&w=740&q=80") center center / cover no-repeat;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .hero-banner::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.12), transparent 35%),
+        linear-gradient(180deg, rgba(27,94,32,0.50), rgba(25, 92, 28, 0.76));
+    }
+
+    .hero-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(27,94,32,0.20), rgba(25, 92, 28, 0.30));
+    }
+
+    .hero-banner .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 14px;
+      background:rgba(255,255,255,.92);
+      color:var(--green-dark);
+      border-radius:999px;
+      font-weight:700;
+      margin-bottom:1rem;
+      box-shadow:0 8px 20px rgba(0,0,0,.08);
+      animation: fadeUp .8s ease both;
+    }
+
+    .hero-title{
+      font-size:clamp(2.2rem,5vw,4.8rem);
+      line-height:1.05;
+      color:#fff;
+      font-weight:800;
+      animation: fadeUp 1s ease .1s both;
+    }
+
+    .hero-text{
+      animation: fadeUp 1s ease .2s both;
+    }
+
+    .btn-green{
+      background:linear-gradient(135deg,var(--green),#3ea24a);
+      color:#fff;
+      border:none;
+      box-shadow:0 12px 24px rgba(46,125,50,.22);
+      font-weight:700;
+      padding:.9rem 1.35rem;
+      border-radius:999px;
+      transition:.25s ease;
+    }
+
+    .btn-green:hover{
+      transform:translateY(-3px) scale(1.01);
+      box-shadow:var(--shadow-strong);
+      color:#fff;
+    }
+
+    .btn-outline-green{
+      border:2px solid rgba(255,255,255,.55);
+      color:#fff;
+      background:transparent;
+      font-weight:700;
+      padding:.9rem 1.35rem;
+      border-radius:999px;
+      transition:.25s ease;
+    }
+
+    .btn-outline-green:hover{
+      background:#fff;
+      color:var(--green-dark);
+      transform:translateY(-3px);
+    }
+
+    .section-pad{
+      padding:5rem 0;
+    }
+
+    .section-title h2{
+      color:var(--green-dark);
+      font-weight:800;
+    }
+
+    .section-title p{
+      color:var(--muted);
+      max-width:720px;
+      margin:0 auto;
+    }
+
+    .panel,
+    .form-box,
+    .info-box,
+    .card-custom,
+    .stat{
+      background:#fff;
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(46,125,50,.08);
+    }
+
+    .panel{
+      padding:1.6rem;
+      transition:.3s ease;
+    }
+
+    .panel:hover,
+    .card-custom:hover,
+    .stat:hover,
+    .form-box:hover,
+    .info-box:hover{
+      transform:translateY(-5px);
+      box-shadow:var(--shadow-strong);
+    }
+
+    .quote{
+      margin-top:1rem;
+      padding-left:1rem;
+      border-left:4px solid var(--green);
+      color:var(--muted);
+      font-style:italic;
+    }
+
+    .card-custom{
+      border:none;
+      border-top:4px solid var(--green);
+      transition:.3s ease;
+      overflow:hidden;
+    }
+
+    .card-custom .card-body{
+      padding:1.4rem;
+    }
+
+    .card-custom:hover .card-title{
+      color:var(--green);
+    }
+
+    .stat{
+      padding:1.2rem;
+      text-align:center;
+      transition:.3s ease;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:2rem;
+      color:var(--green-dark);
+    }
+
+    .form-box, .info-box{
+      padding:1.8rem;
+      transition:.3s ease;
+    }
+
+    .contact-wrap{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .contact-wrap::before{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      background:radial-gradient(circle, rgba(46,125,50,.12), transparent 70%);
+      top:-80px;
+      right:-80px;
+      pointer-events:none;
+    }
+
+    .form-control, .form-select{
+      border-radius:14px;
+      min-height:52px;
+      border:1px solid #d7e7d9;
+      transition:.25s ease;
+      background:#fbfefb;
+    }
+
+    .form-control:focus, .form-select:focus{
+      border-color:var(--green);
+      box-shadow:0 0 0 .2rem rgba(46,125,50,.15);
+      background:#fff;
+    }
+
+    textarea.form-control{
+      min-height:150px;
+      resize:vertical;
+    }
+
+    .form-label{
+      font-weight:700;
+      color:var(--green-dark);
+      margin-bottom:.45rem;
+    }
+
+    .form-note{
+      font-size:.92rem;
+      color:var(--muted);
+    }
+
+    .badge-soft{
+      display:inline-block;
+      background:var(--green-soft);
+      color:var(--green-dark);
+      padding:.4rem .7rem;
+      border-radius:999px;
+      font-size:.85rem;
+      font-weight:700;
+      margin-bottom:1rem;
+    }
+
+    .alert-custom{
+      display:none;
+      background:var(--green-soft);
+      color:var(--green-dark);
+      border:1px solid #a5d6a7;
+      border-radius:12px;
+    }
+
+    .social-icons,
+    .footer-social{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .social-icons a,
+    .footer-social a{
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:.25s ease;
+    }
+
+    .social-icons a{
+      background:var(--green-soft);
+      color:var(--green-dark);
+    }
+
+    .social-icons a:hover{
+      background:var(--green);
+      color:#fff;
+      transform:translateY(-3px);
+    }
+
+    .footer{
+      background:linear-gradient(135deg,#124d1a,#2e7d32);
+      color:#fff;
+      margin-top:3rem;
+      padding:3rem 0 1.2rem;
+    }
+
+    .footer a{color:#e9f5ea;}
+    .footer-links a{
+      display:block;
+      margin-bottom:.55rem;
+    }
+
+    .footer-social a{
+      background:rgba(255,255,255,.14);
+      color:#fff;
+    }
+
+    .footer-social a:hover{
+      background:#fff;
+      color:var(--green-dark);
+      transform:translateY(-3px);
+    }
+
+    .footer-bottom{
+      margin-top:2rem;
+      padding-top:1rem;
+      border-top:1px solid rgba(255,255,255,.18);
+      text-align:center;
+      color:#e9f5ea;
+    }
+
+    .fade-up{
+      animation: fadeUp .8s ease both;
+    }
+
+    .fade-delay-1{animation-delay:.1s;}
+    .fade-delay-2{animation-delay:.2s;}
+    .fade-delay-3{animation-delay:.3s;}
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(24px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes floaty{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-8px);}
+    }
+
+    .floaty{animation:floaty 4s ease-in-out infinite;}
+
+    @media (max-width: 991.98px){
+      .section-pad{padding:4rem 0;}
+      .hero-banner{
+        min-height:auto;
+        padding:6rem 0 4rem;
+        text-align:center;
+      }
+      .hero-title{
+        font-size:clamp(2rem,8vw,3.6rem);
+      }
+      .hero-actions{
+        justify-content:center !important;
+      }
+    }
+
+    @media (max-width: 768px){
+      .hero-banner{
+        padding:5rem 0 3.5rem;
+      }
+      .form-box, .info-box, .panel{
+        padding:1.2rem;
+      }
+      .btn-green, .btn-outline-green{
+        width:100%;
+      }
+      .footer{
+        text-align:center;
+      }
+      .footer-social,
+      .social-icons{
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <button class="btn btn-outline-success d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <a class="navbar-brand brand-text" href="#">Sukoon Wellbeing Center</a>
+
+      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end">
+        <ul class="navbar-nav gap-1">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#who">Who We Are</a></li>
+          <li class="nav-item"><a class="nav-link" href="#benefits">Benefits</a></li>
+          <li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mobileMenuLabel">Sukoon Wellbeing Center</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="#home" data-bs-dismiss="offcanvas">Home</a>
+        <a class="list-group-item list-group-item-action" href="#who" data-bs-dismiss="offcanvas">Who We Are</a>
+        <a class="list-group-item list-group-item-action" href="#benefits" data-bs-dismiss="offcanvas">Benefits</a>
+        <a class="list-group-item list-group-item-action" href="#impact" data-bs-dismiss="offcanvas">Impact</a>
+        <a class="list-group-item list-group-item-action" href="#contact" data-bs-dismiss="offcanvas">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero-banner" id="home">
+      <div class="hero-banner-overlay"></div>
+      <div class="container position-relative z-2">
+        <div class="row justify-content-center">
+          <div class="col-lg-9 text-center text-white">
+            <div class="eyebrow">
+              Social Enterprise • Mental Wellness • Creativity
+            </div>
+            <h1 class="hero-title">
+              Healing communities through creative expression.
+            </h1>
+            <p class="lead text-white mt-3 hero-text">
+              Art as Therapy supports emotional wellbeing through art-based experiences designed for people, families, and communities.
+            </p>
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-2 mt-4 hero-actions">
+              <a href="#contact" class="btn btn-light btn-lg rounded-pill fw-bold">Join Us</a>
+              <a href="#who" class="btn btn-outline-green btn-lg rounded-pill fw-bold">Our Story</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="who">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6 fade-up">
+            <div class="panel h-100">
+              <h2 class="mb-3" style="color:var(--green-dark)">Who We Are</h2>
+              <p>
+                We are a social enterprise focused on emotional wellbeing through creativity and community support.
+                Our goal is to make art therapy-inspired support more accessible to children, youth, and adults.
+              </p>
+              <div class="quote">We believe creativity can open doors to healing, dignity, and hope.</div>
+            </div>
+          </div>
+          <div class="col-lg-6 fade-up fade-delay-1">
+            <div class="panel h-100 floaty">
+              <h3 class="mb-3" style="color:var(--green-dark)">Our Mission</h3>
+              <p>
+                To make art therapy-inspired support more accessible through workshops, programs, and safe creative spaces.
+              </p>
+              <p class="text-muted mb-0">
+                As a social enterprise, our mission comes first.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-white" id="benefits">
+      <div class="container">
+        <div class="section-title text-center mb-4">
+          <h2>Why Art Helps</h2>
+          <p>Creative activity can support emotional release, mindfulness, and self-discovery.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="card card-custom h-100">
+              <div class="card-body">
+                <h3 class="card-title">Emotional Release</h3>
+                <p class="card-text">Express feelings without needing the perfect words.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up fade-delay-1">
+            <div class="card card-custom h-100">
+              <div class="card-body">
+                <h3 class="card-title">Relaxation</h3>
+                <p class="card-text">Gentle creative work can lower stress and help you feel grounded.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up fade-delay-2">
+            <div class="card card-custom h-100">
+              <div class="card-body">
+                <h3 class="card-title">Confidence</h3>
+                <p class="card-text">Making something personal can improve self-esteem and identity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="impact">
+      <div class="container">
+        <div class="section-title text-center mb-4">
+          <h2>Our Social Impact</h2>
+          <p>We combine creativity with service to create lasting value for people and communities.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="panel h-100">
+              <h3 style="color:var(--green-dark)">Workshops</h3>
+              <p>Creative sessions for schools, groups, and community spaces.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up fade-delay-1">
+            <div class="panel h-100">
+              <h3 style="color:var(--green-dark)">Support</h3>
+              <p>Safe and affordable spaces for emotional expression and healing.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 fade-up fade-delay-2">
+            <div class="panel h-100">
+              <h3 style="color:var(--green-dark)">Growth</h3>
+              <p>Programs that empower people through art, learning, and connection.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+          <div class="col-6 col-lg-3 fade-up"><div class="stat"><strong>100+</strong><span>Creative sessions</span></div></div>
+          <div class="col-6 col-lg-3 fade-up fade-delay-1"><div class="stat"><strong>500+</strong><span>Lives reached</span></div></div>
+          <div class="col-6 col-lg-3 fade-up fade-delay-2"><div class="stat"><strong>20+</strong><span>Community partners</span></div></div>
+          <div class="col-6 col-lg-3 fade-up fade-delay-3"><div class="stat"><strong>1</strong><span>Shared mission</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-white contact-wrap" id="contact">
+      <div class="container">
+        <div class="section-title text-center mb-5">
+          <h2>Get In Touch</h2>
+          <p>Share your needs, request a workshop, or connect with our team for support.</p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-7 fade-up">
+            <div class="form-box h-100">
+              <span class="badge-soft">Contact Form</span>
+              <h2 class="mb-2" style="color:var(--green-dark)">Let’s start the conversation</h2>
+              <p class="form-note mb-4">
+                Fill out the form below and we’ll respond with the right support, workshop details, or collaboration options.
+              </p>
+
+              <div class="alert alert-custom" id="alertBox">Saved successfully!</div>
+
+              <form id="artForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Your full name">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your email">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" placeholder="+92...">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="subject" class="form-label">Subject</label>
+                    <select class="form-select" id="subject">
+                      <option selected>Select a topic</option>
+                      <option>Workshop Booking</option>
+                      <option>Community Support</option>
+                      <option>Volunteer With Us</option>
+                      <option>Partnership Inquiry</option>
+                      <option>General Question</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="Your city">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="group" class="form-label">Audience</label>
+                    <select class="form-select" id="group">
+                      <option selected>Choose one</option>
+                      <option>Child</option>
+                      <option>Teen</option>
+                      <option>Adult</option>
+                      <option>Family</option>
+                      <option>School / Organization</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" placeholder="Tell us about your needs, goals, or the support you're looking for..."></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label for="help" class="form-label">What do you need?</label>
+                    <textarea class="form-control" id="help" placeholder="Example: workshop for students, emotional support space, art activity session, partnership proposal..."></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Preferred Contact Method</label>
+                    <div class="d-flex flex-wrap gap-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="contactMethod" id="contactEmail" checked>
+                        <label class="form-check-label" for="contactEmail">Email</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="contactMethod" id="contactPhone">
+                        <label class="form-check-label" for="contactPhone">Phone</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="contactMethod" id="contactWhatsApp">
+                        <label class="form-check-label" for="contactWhatsApp">WhatsApp</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-green w-100 py-3">Save Data</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-5 fade-up fade-delay-1">
+            <div class="info-box h-100">
+              <span class="badge-soft">Connect With Us</span>
+              <h2 class="mb-3" style="color:var(--green-dark)">We’re here to help</h2>
+              <p><strong>Available:</strong> Monday to Saturday</p>
+              <p><strong>Format:</strong> Online and in person</p>
+              <p><strong>Focus:</strong> Stress, anxiety, creativity, emotional healing</p>
+              <hr>
+              <h5 style="color:var(--green-dark)">What happens next?</h5>
+              <ul class="ps-3">
+                <li>We review your message.</li>
+                <li>We contact you with suitable options.</li>
+                <li>We help arrange the right support or session.</li>
+              </ul>
+              <div class="social-icons mt-4">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <h3>Sukoon Wellbeing Center</h3>
+          <p>A social enterprise supporting healing, confidence, and community wellbeing through creativity.</p>
+          <div class="footer-social">
+            <a href="https://www.tiktok.com/@linguaphileuon?_r=1&_t=ZS-95jJ9aWKmRg" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com/@artastharapy-kb?si=dCkKA-mmPItUQRWp" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#who">Who We Are</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#impact">Impact</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <h4>Contact</h4>
+          <p class="mb-1">Email: hello@sukoonwellbeingcenter.org</p>
+          <p class="mb-1">Phone: +92 300 1234567</p>
+          <p class="mb-0">Location: Gujranwala, Punjab</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="mb-0">&copy; 2026 Art as Therapy. All rights reserved.By Amara bibi</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const form = document.getElementById("artForm");
+    const alertBox = document.getElementById("alertBox");
+    const storageKey = "art_therapy_form_data";
+
+    function showAlert(message) {
+      alertBox.textContent = message;
+      alertBox.style.display = "block";
+      setTimeout(() => alertBox.style.display = "none", 1800);
+    }
+
+    function saveFormData() {
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        subject: document.getElementById("subject").value,
+        city: document.getElementById("city").value,
+        group: document.getElementById("group").value,
+        message: document.getElementById("message").value,
+        help: document.getElementById("help").value
+      };
+      localStorage.setItem(storageKey, JSON.stringify(data));
+      showAlert("Form data saved successfully!");
+    }
+
+    function loadFormData() {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        const data = JSON.parse(saved);
+        document.getElementById("name").value = data.name || "";
+        document.getElementById("email").value = data.email || "";
+        document.getElementById("phone").value = data.phone || "";
+        document.getElementById("subject").value = data.subject || "Select a topic";
+        document.getElementById("city").value = data.city || "";
+        document.getElementById("group").value = data.group || "Choose one";
+        document.getElementById("message").value = data.message || "";
+        document.getElementById("help").value = data.help || "";
+      }
+    }
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      saveFormData();
+    });
+
+    window.addEventListener("load", loadFormData);
+  </script>
+</body>
+</html>
